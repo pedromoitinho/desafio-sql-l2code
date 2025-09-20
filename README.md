@@ -1,5 +1,5 @@
 ## Resposta do desáfio 1, para fazer uma consulta na suposta tabela (assumindo os dados propostos na tabela)
-
+```bash
 SELECT
     p.name AS nome_do_professor,
     t.name AS titulo,
@@ -18,3 +18,4 @@ GROUP BY
     p.id, p.name, t.name
 ORDER BY
     total_horas_comprometidas DESC;
+```
