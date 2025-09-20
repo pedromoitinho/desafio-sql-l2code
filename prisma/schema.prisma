@@ -1,0 +1,85 @@
+generator client {
+   provider = "prisma-client-js"
+}
+
+datasource db {
+   provider = "sqlite"
+   url      = "file:./banco.db"
+}
+
+model Department {
+   id          Int         @id @default(autoincrement())
+   name        String
+   professores Professor[]
+}
+
+model Title {
+   id          Int         @id @default(autoincrement())
+   name        String
+   professores Professor[]
+}
+
+model Professor {
+   id           Int        @id @default(autoincrement())
+   name         String
+   departmentId Int
+   department   Department @relation(fields: [departmentId], references: [id])
+
+   Title   Title?  @relation(fields: [titleId], references: [id])
+   titleId Int?
+   classes Class[]
+}
+
+model Building {
+   id    Int    @id @default(autoincrement())
+   name  String
+   rooms Room[]
+}
+
+model Room {
+   id             Int             @id @default(autoincrement())
+   name           String
+   building       Building        @relation(fields: [buildingId], references: [id])
+   buildingId     Int
+   classSchedules ClassSchedule[]
+}
+
+model Subject {
+   id              Int                   @id @default(autoincrement())
+   code            String                @unique
+   name            String
+   classes         Class[]
+   prerequisites   SubjectPrerequisite[] @relation("subject")
+   prerequisiteFor SubjectPrerequisite[] @relation("prerequisite")
+}
+
+model SubjectPrerequisite {
+   subject        Subject @relation("subject", fields: [subjectId], references: [id])
+   subjectId      Int
+   prerequisite   Subject @relation("prerequisite", fields: [prerequisiteId], references: [id])
+   prerequisiteId Int
+
+   @@id([subjectId, prerequisiteId])
+}
+
+model Class {
+   id             Int             @id @default(autoincrement())
+   year           Int
+   semester       Int
+   subject        Subject         @relation(fields: [subjectId], references: [id])
+   subjectId      Int
+   professor      Professor       @relation(fields: [professorId], references: [id])
+   professorId    Int
+   classSchedules ClassSchedule[]
+}
+
+model ClassSchedule {
+   id        Int    @id @default(autoincrement())
+   dayOfWeek String
+   startTime String
+   endTime   String
+   class     Class  @relation(fields: [classId], references: [id])
+   classId   Int
+   room      Room   @relation(fields: [roomId], references: [id])
+   roomId    Int
+}

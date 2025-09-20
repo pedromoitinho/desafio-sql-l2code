@@ -1,0 +1,9 @@
+services:
+  consulta-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: consulta-api
+    ports:
+      - "3000:3000"
+    restart: unless-stopped

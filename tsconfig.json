@@ -8,6 +8,8 @@
 		"pretty": true,
 		"removeComments": true,
 		"emitDecoratorMetadata": true,
-		"experimentalDecorators": true
+		"experimentalDecorators": true,
+		"outDir": "./dist",
+		"rootDir": "./src"
 	}
 }
