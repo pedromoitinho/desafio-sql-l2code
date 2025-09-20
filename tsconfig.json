@@ -1,0 +1,13 @@
+{
+	"compilerOptions": {
+		"module": "nodenext",
+		"moduleResolution": "nodenext",
+		"target": "esnext",
+		"alwaysStrict": true,
+		"forceConsistentCasingInFileNames": true,
+		"pretty": true,
+		"removeComments": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true
+	}
+}
