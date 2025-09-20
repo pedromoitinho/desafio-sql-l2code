@@ -1,4 +1,4 @@
-## Resposta do desáfio 1, para fazer uma consulta na suposta tabela (assumindo os dados propostos na tabela)
+## Resposta do desafio 1, para fazer uma consulta na suposta tabela (assumindo os dados propostos na tabela)
 ```bash
 SELECT
     p.name AS nome_do_professor,
